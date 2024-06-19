@@ -19,11 +19,13 @@
         "Pohl.pgn",
         "UHO_4060_v2.epd",
         "UHO_4060_vB.epd",
-        "UHO_4060_vT.epd"
+        "UHO_4060_vT.epd",
+        "UHO_MEGA_2022_+110_+149.epd"
     ],
 
     "engines" : [
         "4ku",
+        "Anduril",
         "Berserk",
         "Bit-Genie",
         "BlackMarlin",
