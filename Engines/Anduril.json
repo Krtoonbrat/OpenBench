@@ -5,7 +5,7 @@
 
     "build" : {
         "path"      : "OpenBench",
-        "compilers" : ["clang"],
+        "compilers" : ["clang++"],
         "cpuflags"  : ["AVX2", "FMA", "POPCNT", "BMI2"],
         "systems"   : ["Windows", "Linux"]
     },
