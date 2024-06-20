@@ -1,6 +1,6 @@
 {
     "client_version"  : 28,
-    "client_repo_url" : "https://github.com/AndyGrant/OpenBench",
+    "client_repo_url" : "https://github.com/Krtoonbrat/OpenBench",
     "client_repo_ref" : "master",
 
     "use_cross_approval"          : false,
