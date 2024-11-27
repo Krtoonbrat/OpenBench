@@ -67,6 +67,13 @@ def genfens_book_input_name(config):
 
     return 'None' if book_none else os.path.join('Books', book_name)
 
+def genfens_seed(config, N_per_thread, thread_index):
+
+    x = config.workload['test']['book_seed']
+    y = config.workload['test']['book_index']
+
+    return (x << 32) + (y + N_per_thread * thread_index)
+
 def genfens_command_builder(binary, network, private, N, book, extra_args, seed):
 
     command = ['./%s' % (binary)]
@@ -94,8 +101,8 @@ def genfens_single_threaded(command, queue):
 
 def genfens_progress_bar(curr, total):
 
-    prev_progress = int(50 * (curr - 1) / total)
-    curr_progress = int(50 * (curr - 0) / total)
+    prev_progress = 50 * (curr - 1) // total
+    curr_progress = 50 * (curr - 0) // total
 
     if curr_progress != prev_progress:
         bar_text = '=' * curr_progress + ' ' * (50 - curr_progress)
@@ -105,19 +112,20 @@ def create_genfens_opening_book(config, binary_name, network):
 
     # Format: ./engine "genfens N seed S book <None|book.epd>" "quit"
     N     = genfens_required_openings_each(config)
-    seed  = config.workload['test']['book_index']
+    seeds = config.workload['test']['genfens_seeds']
     args  = genfens_command_args(config, binary_name, network)
 
     start_time = time.time()
     output     = multiprocessing.Queue()
     print ('\nGenerating %d Openings using %d Threads...' % (N * config.threads, config.threads))
 
+
     # Split the work over many threads. Ensure the seed varies by the thread,
     # number in accordance with how many openings each thread will generate
     processes = [
         multiprocessing.Process(
             target=genfens_single_threaded,
-            args=(genfens_command_builder(*args, seed + ii * N), output))
+            args=(genfens_command_builder(*args, seeds[ii]), output))
         for ii in range(config.threads)
     ]
 
