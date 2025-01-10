@@ -1,5 +1,5 @@
 {
-    "client_version"  : 32,
+    "client_version"  : 35,
     "client_repo_url" : "https://github.com/Krtoonbrat/OpenBench",
     "client_repo_ref" : "master",
 
@@ -20,6 +20,7 @@
         "UHO_4060_v2.epd",
         "UHO_4060_vB.epd",
         "UHO_4060_vT.epd",
+        "UHO_Lichess_4852_v1.epd",
         "UHO_MEGA_2022_+110_+149.epd"
     ],
 
